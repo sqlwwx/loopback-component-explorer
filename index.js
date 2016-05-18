@@ -28,11 +28,15 @@ explorer.routes = routes;
 
 function explorer(loopbackApplication, options) {
   options = _defaults({}, options, { mountPath: '/explorer' });
-  loopbackApplication.use(options.mountPath, routes(loopbackApplication, options));
+  loopbackApplication.on('addDS', function(ds) {
+    var dsName = ds ? ('/' + ds.name) : '';
+    loopbackApplication.use(options.mountPath + dsName, routes(loopbackApplication, options, ds, dsName));
+  });
+  loopbackApplication.emit('addDS');
   loopbackApplication.set('loopback-component-explorer', options);
 }
 
-function routes(loopbackApplication, options) {
+function routes(loopbackApplication, options, ds, dsName) {
   var loopback = loopbackApplication.loopback;
   var loopbackMajor = loopback && loopback.version &&
   loopback.version.split('.')[0] || 1;
@@ -49,7 +53,7 @@ function routes(loopbackApplication, options) {
 
   var router = new loopback.Router();
 
-  mountSwagger(loopbackApplication, router, options);
+  mountSwagger(loopbackApplication, router, options, ds, dsName);
 
   // config.json is loaded by swagger-ui. The server should respond
   // with the relative URI of the resource doc.
@@ -100,25 +104,25 @@ function routes(loopbackApplication, options) {
  * swagger documentation.
  * @param {Object} opts Options.
  */
-function mountSwagger(loopbackApplication, swaggerApp, opts) {
-  var swaggerObject = createSwaggerObject(loopbackApplication, opts);
+function mountSwagger(loopbackApplication, swaggerApp, opts, ds, dsName) {
+  var swaggerObject = createSwaggerObject(loopbackApplication, opts, ds, dsName);
 
   // listening to modelRemoted event for updating the swaggerObject
   // with the newly created model to appear in the Swagger UI.
-  loopbackApplication.on('modelRemoted', function() {
-    swaggerObject = createSwaggerObject(loopbackApplication, opts);
+  loopbackApplication.on('modelRemoted' + dsName, function() {
+    swaggerObject = createSwaggerObject(loopbackApplication, opts, ds, dsName);
   });
 
   // listening to remoteMethodDisabled event for updating the swaggerObject
   // when a remote method is disabled to hide that method in the Swagger UI.
-  loopbackApplication.on('remoteMethodDisabled', function() {
-    swaggerObject = createSwaggerObject(loopbackApplication, opts);
+  loopbackApplication.on('remoteMethodDisabled' + dsName, function() {
+    swaggerObject = createSwaggerObject(loopbackApplication, opts, ds, dsName);
   });
 
   var resourcePath = opts && opts.resourcePath || 'swagger.json';
   if (resourcePath[0] !== '/') resourcePath = '/' + resourcePath;
 
-  var remotes = loopbackApplication.remotes();
+  var remotes = loopbackApplication.remotes(ds);
   setupCors(swaggerApp, remotes);
 
   swaggerApp.get(resourcePath, function sendSwaggerObject(req, res) {
