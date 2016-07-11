@@ -12,8 +12,8 @@ var path = require('path');
 var urlJoin = require('./lib/url-join');
 var _defaults = require('lodash').defaults;
 var cors = require('cors');
-var createSwaggerObject = require('loopback-swagger').generateSwaggerSpec;
-var SWAGGER_UI_ROOT = require('strong-swagger-ui/index').dist;
+var createSwaggerObject = require('loopback-swaggernext').generateSwaggerSpec;
+var SWAGGER_UI_ROOT = require('strong-swagger-uinext/index').dist;
 var STATIC_ROOT = path.join(__dirname, 'public');
 
 module.exports = explorer;

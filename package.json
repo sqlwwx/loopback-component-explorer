@@ -1,5 +1,5 @@
 {
-  "name": "loopback-component-explorer",
+  "name": "loopback-component-explorernext",
   "version": "2.5.0",
   "description": "Browse and test your LoopBack app's APIs",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/strongloop/loopback-component-explorer.git"
+    "url": "git+https://github.com/sqlwwx/loopback-component-explorer.git"
   },
   "keywords": [
     "loopback",
@@ -20,7 +20,7 @@
   "author": "Ritchie Martori",
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/strongloop/loopback-component-explorer/issues"
+    "url": "https://github.com/sqlwwx/loopback-component-explorer/issues"
   },
   "devDependencies": {
     "chai": "^3.2.0",
@@ -35,7 +35,7 @@
     "cors": "^2.7.1",
     "debug": "^2.2.0",
     "lodash": "^3.10.0",
-    "loopback-swagger": "https://github.com/sqlwwx/loopback-swagger/tarball/next",
-    "strong-swagger-ui": "https://github.com/sqlwwx/strong-swagger-ui/tarball/next"
+    "loopback-swaggernext": "^2.4.3",
+    "strong-swagger-uinext": "^21.0.2"
   }
 }
