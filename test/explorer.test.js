@@ -3,7 +3,7 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
-var loopback = require('loopback');
+var loopback = require('loopbacknext');
 var explorer = require('../');
 var request = require('supertest');
 var assert = require('assert');
@@ -17,7 +17,7 @@ describe('explorer', function() {
     beforeEach(givenLoopBackAppWithExplorer());
 
     it('should register "loopback-component-explorer" to the app', function() {
-      expect(this.app.get('loopback-component-explorer'))
+      expect(this.app.get('loopback-component-explorernext'))
       .to.have.property('mountPath', '/explorer');
     });
 
@@ -62,8 +62,8 @@ describe('explorer', function() {
   describe('with custom explorer base', function() {
     beforeEach(givenLoopBackAppWithExplorer('/swagger'));
 
-    it('should register "loopback-component-explorer" to the app', function() {
-      expect(this.app.get('loopback-component-explorer'))
+    it('should register "loopback-component-explorernext" to the app', function() {
+      expect(this.app.get('loopback-component-explorernext'))
       .to.have.property('mountPath', '/swagger');
     });
 

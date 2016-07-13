@@ -29,7 +29,7 @@ explorer.routes = routes;
 function explorer(loopbackApplication, options) {
   options = _defaults({}, options, { mountPath: '/explorer' });
   loopbackApplication.use(options.mountPath, routes(loopbackApplication, options));
-  loopbackApplication.set('loopback-component-explorer', options);
+  loopbackApplication.set('loopback-component-explorernext', options);
 }
 
 function routes(loopbackApplication, options) {
