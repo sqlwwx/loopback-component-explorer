@@ -35,7 +35,7 @@
     "cors": "^2.7.1",
     "debug": "^2.2.0",
     "lodash": "^3.10.0",
-    "loopback-swagger": "^2.1.0",
-    "strong-swagger-ui": "^21.0.0"
+    "loopback-swagger": "https://github.com/sqlwwx/loopback-swagger/tarball/master",
+    "strong-swagger-ui": "https://github.com/sqlwwx/strong-swagger-ui/tarball/master"
   }
 }
