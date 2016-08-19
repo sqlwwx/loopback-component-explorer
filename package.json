@@ -36,6 +36,7 @@
     "debug": "^2.2.0",
     "lodash": "^3.10.0",
     "loopback-swagger": "https://github.com/sqlwwx/loopback-swagger/tarball/master",
+    "strong-globalize": "^2.6.2",
     "strong-swagger-ui": "https://github.com/sqlwwx/strong-swagger-ui/tarball/dist"
   }
 }
